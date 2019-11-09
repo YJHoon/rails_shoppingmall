@@ -4,9 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :posts, dependent: :nullify
-  has_many :items, dependent: :nullify
-  has_many :reviews, dependent: :nullify
+  has_many :posts, dependent: :destroy
+  has_many :items, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 
   def say_hello
     puts 'hello hi'

@@ -1,12 +1,13 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: %i[show edit update destroy review_create]
   before_action :authenticate_user!, except: %i[index show]
+  
   def index
     @items = Item.all
   end
 
   def show
-    @review = @item.reviews.find(params[:id])
+    @reviews = @item.reviews
   end
 
   def new
