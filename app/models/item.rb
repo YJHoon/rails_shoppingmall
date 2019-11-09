@@ -9,4 +9,8 @@ class Item < ApplicationRecord
   def image_url
     image.url.present? ? image.url : "/simple.png"
   end
+
+  def rating_avg
+    reviews.sum(:rating) / reviews_count.to_f # rescue 0
+  end
 end
