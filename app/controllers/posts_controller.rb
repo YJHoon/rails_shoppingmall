@@ -1,64 +1,48 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_post, only: %i[show edit update destroy]
+  before_action :authenticate_user!, except: %i[index show]
 
   def index
     @posts = Post.all
+    # Item
+    # Review
+    # Wish
+    # Order
+    # LineItem
   end
-  
+
   def show
   end
 
   def new
-    @post = current_user.posts.build
+    @post = current_user.posts.new
   end
 
   def edit
   end
 
   def create
-    @post = current_user.posts.build(post_params)
-    @post.user = current_user
-    respond_to do |format|
-      if @post.save
-        format.html{ redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render :show, status: :created, location: @post }
-      else
-        format.html { render :new }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
-    end
+    post = current_user.create_post(post_params)
+    redirect_to post_path(post), notice: '게시글이 성공적으로 생성되었습니다.'
   end
 
   def update
-    respond_to do |format|
-      if @post.update(post_params)
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-        format.json { render :show, status: :ok, location: @post }
-      else
-        format.html { render :edit }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
-    end
+    @post.update_attributes!(post_params)
+    redirect_to post_path(@post), notice: '게시글이 성공적으로 수정되었습니다.'
   end
 
   def destroy
-    @post.destroy
-    respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was sucessfully destroy' }
-      format.json {head :no_content }
-    end
+    @post.destroy!
+    redirect_to root_path, notice: '게시글이 성공적으로 삭제되었습니다.'
   end
 
   private
-    def set_post
-      @post = Post.find(params[:id])
-    end
 
-    def post_params
-      params.require(:post).permit(:user_id, :title, :content, :image)
-    end
-  
+  def set_post
+    @post = Post.find(params[:id])
+  end
 
-
+  def post_params
+    params.require(:post).permit(:title, :content, :image)
+  end
 end
