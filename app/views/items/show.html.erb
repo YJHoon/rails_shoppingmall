@@ -26,19 +26,44 @@
 
   <%= link_to 'Edit', edit_item_path(@item) %> |
   <%= link_to 'Destroy', @item, method: :delete, data: { confirm: 'Are you sure?' } %> |
-  <%= link_to 'Back', items_path%>
+  <%= link_to 'Back', items_path %>
 </div>
+
 <div class="review_content">
-  <h2>Reviews</h2>
+  <h4>리뷰 작성</h4>
+  <div class="write-review">
+    <%= form_for(@new_review, url: item_reviews_path(@item)) do |f| %>
+      <%= f.label :댓글 %>
+      <%= f.text_field :body, required: true %><br>
 
-  <%= form_for :review, url: item_reviews_path(@item, review), method: :delete do |f| %>
-    <%= f.text_field :body %>
-    <%= f.submit %>
-  <%end%>
+      <%= f.label :평점 %>
+      <%= f.number_field :rating %><br>
 
+      <%= f.submit('댓글작성', class: 'btn btn-outline-primary') %><br>
+    <% end %>
+  </div>
 
-
-  <% @reviews.each do |review| %>
-    <h5><%= review.body %></h5>
-  <% end %>
+  <div class="show-review">
+    <h4>리뷰</h4>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col" class="table1">닉네임</th>
+            <th scope="col" class="table2">리뷰내용</th>
+            <th scope="col" class="table3">평점</th>
+            <th scope="col" class="table3">평점</th>
+          </tr>
+        </thead>
+        <% @reviews.each do |review| %>
+        <tbody>
+          <tr>
+            <td><%=  %></td>
+            <td><%= review.body %></td>
+            <td><%= review.rating %></td>
+            <td><%= link_to('삭제', item_review_path(@item, review), method: :delete) %></td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+  </div>
 </div>

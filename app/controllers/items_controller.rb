@@ -1,13 +1,14 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: %i[show edit update destroy review_create review_destroy]
+  before_action :set_item, only: %i[show edit update destroy]
   before_action :authenticate_user!, except: %i[index show]
-  
+
   def index
     @items = Item.all
   end
 
   def show
-    @reviews = @item.reviews
+    @new_review = Review.new
+    @reviews = @item.reviews.order(created_at: :desc)
   end
 
   def new
@@ -41,5 +42,4 @@ class ItemsController < ApplicationController
   def item_params
     params[:item].permit(:display_name, :item_explain, :image, :price, :itemname, :quantity)
   end
-
 end
