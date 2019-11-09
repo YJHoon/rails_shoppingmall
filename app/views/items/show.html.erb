@@ -1,0 +1,44 @@
+<p>
+  <strong>Image:</strong>
+  <%= image_tag(@item.image_url, style:"width:200px;") %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @item.title %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @item.content %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @item.price %>
+</p>
+
+<p>
+  <strong>Itemname:</strong>
+  <%= @item.itemname %>
+</p>
+
+<p>
+  <strong>number:</strong>
+  <%= @item.number %>
+</p>
+
+<%= link_to 'Edit', edit_item_path(@item) %> |
+<%= link_to 'Destroy', @item, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<%= link_to 'Back', items_path%>
+
+<h2>Riviews</h2>
+
+<div id="reviews">
+    <%= render :partial => @item.reviews %>
+</div>
+
+<% @review.each do |review| %>
+<h5><%= review.body %></h5>
+<% end %>
+

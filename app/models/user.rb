@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :posts, dependent: :nullify
+  has_many :items, dependent: :nullify
+  has_many :reviews, dependent: :nullify
 
   def say_hello
     puts 'hello hi'

@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Items</h1>
+<br>
+<%= link_to '생성하기', new_item_path %>
+<br><br>
+
+<div class="container">
+  <div class="row">
+    <% @items.each do |item| %>
+    <div class="col">
+      <div class="card" style="width: 18rem;">
+        <%= image_tag(item.image_url, id: 'item-image') %>
+        <div class="card-body">
+          <h5 class="card-title"><%= item.title %></h5>
+          <strong><h5 class="card-title"><%= item.price %>원</h5></strong>
+          <td><%= link_to '보러가기', item %></td>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

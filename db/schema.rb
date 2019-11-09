@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_08_152812) do
+ActiveRecord::Schema.define(version: 2019_11_09_121846) do
+
+  create_table "items", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "title", default: "", null: false
+    t.string "content", default: "", null: false
+    t.integer "price", default: 0, null: false
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "itemname", default: "", null: false
+    t.integer "number", default: 1
+    t.index ["user_id"], name: "index_items_on_user_id"
+  end
 
   create_table "likes", force: :cascade do |t|
     t.integer "user_id"
@@ -32,6 +45,16 @@ ActiveRecord::Schema.define(version: 2019_11_08_152812) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "item_id"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_reviews_on_item_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "email", default: "", null: false
@@ -43,6 +66,15 @@ ActiveRecord::Schema.define(version: 2019_11_08_152812) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "wishes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_wishes_on_item_id"
+    t.index ["user_id"], name: "index_wishes_on_user_id"
   end
 
 end
