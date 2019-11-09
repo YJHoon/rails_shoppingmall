@@ -26,19 +26,18 @@
 
   <%= link_to 'Edit', edit_item_path(@item) %> |
   <%= link_to 'Destroy', @item, method: :delete, data: { confirm: 'Are you sure?' } %> |
-  <%= link_to 'Back', items_path%>
+  <%= link_to 'Back', items_path %>
 </div>
 <div class="review_content">
   <h2>Reviews</h2>
 
-  <%= form_for :review, url: @item_reviews_path, method: :post do |f|%>
-    <%= f.text_field :body %>
-    <%= f.submit %>
-  <%end%>
-
-
+  <%= form_for(@new_review, url: item_reviews_path(@item)) do |f| %>
+    <%= f.text_field :body, required: true %>
+    <%= f.submit('댓글작성', class: 'btn btn-outline-primary') %>
+  <% end %>
 
   <% @reviews.each do |review| %>
     <h5><%= review.body %></h5>
+    <%= link_to('삭제', item_review_path(@item, review), method: :delete) %>
   <% end %>
 </div>
