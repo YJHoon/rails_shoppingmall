@@ -11,4 +11,5 @@ class Item < ApplicationRecord
   end
 
   # 디비 설계 다시하기, 컬럼이름 명시적으로 다바꾸고, default 필요없는거 다 삭제
+  # rename_column, change_column
 end
