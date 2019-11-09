@@ -32,29 +32,14 @@ class ItemsController < ApplicationController
     redirect_to root_path, notice: '게시글이 정상적으로 삭제되었습니다.'
   end
 
-  def review_create
-    @review = @item.reviews.create!(review_params)
-    redirect_to root_path
-  end
-
-  def review_destroy
-    @review = @item.review.find(params[:id])
-    @review.destroy!
-    redirect_to @item_path
-  end
-
   private
 
   def set_item
     @item = Item.find(params[:id])
   end
 
-
   def item_params
     params[:item].permit(:display_name, :item_explain, :image, :price, :itemname, :quantity)
   end
 
-  def review_params
-    @review = params[:review].permit(:body)
-  end
 end

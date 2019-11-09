@@ -31,7 +31,7 @@
 <div class="review_content">
   <h2>Reviews</h2>
 
-  <%= form_for :review, url: @item_reviews_path, method: :post do |f|%>
+  <%= form_for :review, url: item_reviews_path(@item, review), method: :delete do |f| %>
     <%= f.text_field :body %>
     <%= f.submit %>
   <%end%>
