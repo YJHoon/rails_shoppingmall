@@ -1,43 +1,44 @@
-<p>
-  <strong>Image:</strong>
-  <%= image_tag(@item.image_url, style:"width:200px;") %>
-</p>
+<div class="item-show">
+  <p>
+    <strong>사진:</strong>
+    <%= image_tag(@item.image_url, style:"width:200px;") %>
+  </p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @item.title %>
-</p>
+  <p>
+    <strong>상품 이름:</strong>
+    <%= @item.itemname %>
+  </p>
 
-<p>
-  <strong>Content:</strong>
-  <%= @item.content %>
-</p>
+  <p>
+    <strong>상품 설명:</strong>
+    <%= @item.item_explain %>
+  </p>
 
-<p>
-  <strong>Price:</strong>
-  <%= number_to_currency(@item.price, unit: '₩') %>
-</p>
+  <p>
+    <strong>가격:</strong>
+    <%= number_to_currency(@item.price, unit: '₩') %>
+  </p>
 
-<p>
-  <strong>Itemname:</strong>
-  <%= @item.itemname %>
-</p>
+  <p>
+    <strong>수량:</strong>
+    <%= @item.quantity %>
+  </p>
 
-<p>
-  <strong>number:</strong>
-  <%= @item.number %>
-</p>
-
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Destroy', @item, method: :delete, data: { confirm: 'Are you sure?' } %> |
-<%= link_to 'Back', items_path%>
-
-<h2>Riviews</h2>
-
-<div id="reviews">
-    <%= render :partial => @item.reviews %>
+  <%= link_to 'Edit', edit_item_path(@item) %> |
+  <%= link_to 'Destroy', @item, method: :delete, data: { confirm: 'Are you sure?' } %> |
+  <%= link_to 'Back', items_path%>
 </div>
+<div class="review_content">
+  <h2>Reviews</h2>
 
-<% @reviews.each do |review| %>
-  <h5><%= review.body %></h5>
-<% end %>
+  <%= form_for :review, url: @item_reviews_path, method: :post do |f|%>
+    <%= f.text_field :body %>
+    <%= f.submit %>
+  <%end%>
+
+
+
+  <% @reviews.each do |review| %>
+    <h5><%= review.body %></h5>
+  <% end %>
+</div>

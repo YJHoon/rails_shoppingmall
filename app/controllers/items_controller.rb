@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: %i[show edit update destroy review_create]
+  before_action :set_item, only: %i[show edit update destroy review_create review_destroy]
   before_action :authenticate_user!, except: %i[index show]
   
   def index
@@ -23,7 +23,7 @@ class ItemsController < ApplicationController
   end
 
   def update
-    @item.update_attribute!(item_params)
+    @item.update_attributes!(item_params)
     redirect_to item_path(@item), notice: '게시글이 정상적으로 수정되었습니다.'
   end
 
@@ -33,7 +33,14 @@ class ItemsController < ApplicationController
   end
 
   def review_create
-    review = @item.reviews.create!(review_params)
+    @review = @item.reviews.create!(review_params)
+    redirect_to root_path
+  end
+
+  def review_destroy
+    @review = @item.review.find(params[:id])
+    @review.destroy!
+    redirect_to @item_path
   end
 
   private
@@ -42,11 +49,12 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+
   def item_params
-    params[:item].permit(:title, :content, :image, :price, :itemname, :number)
+    params[:item].permit(:display_name, :item_explain, :image, :price, :itemname, :quantity)
   end
 
   def review_params
-    params[:review].permit(:body)
+    @review = params[:review].permit(:body)
   end
 end

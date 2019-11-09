@@ -10,18 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_09_121846) do
+ActiveRecord::Schema.define(version: 2019_11_09_140943) do
 
   create_table "items", force: :cascade do |t|
     t.integer "user_id"
-    t.string "title", default: "", null: false
-    t.string "content", default: "", null: false
+    t.string "display_name"
+    t.string "item_explain"
     t.integer "price", default: 0, null: false
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "itemname", default: "", null: false
-    t.integer "number", default: 1
+    t.string "itemname"
+    t.integer "quantity", default: 1
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
