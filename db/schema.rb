@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_09_194107) do
+ActiveRecord::Schema.define(version: 2019_11_11_062215) do
 
   create_table "items", force: :cascade do |t|
     t.integer "user_id"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 2019_11_09_194107) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_wishes_on_item_id"
+    t.index ["user_id", "item_id"], name: "index_wishes_on_user_id_and_item_id", unique: true
     t.index ["user_id"], name: "index_wishes_on_user_id"
   end
 
