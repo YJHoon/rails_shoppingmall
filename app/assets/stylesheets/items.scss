@@ -3,7 +3,28 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .container{
   margin-bottom: 100px;
+  text-align : center;
+}
 
+body{
+  background-color: #666666;
+ }
+
+.card {
+  background: red;
+  border-radius: 10%;
+  display: inline-block;
+  height: 18rem;
+  margin: 1rem;
+  position: relative;
+  width: 300px;
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  margin-bottom: 50px;
+}
+
+.card:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
 .table1{
@@ -25,8 +46,4 @@
 #item-image{
   width: 100%;
   height: 50%;  
-}
-
-.card{
-  margin-bottom: 50px;
 }
