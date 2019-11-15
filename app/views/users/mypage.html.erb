@@ -3,13 +3,14 @@
   <p><strong>이메일: <%= current_user.email %></strong></p>
   <p><strong>내가 올린 상품: 
     <% @items.each do |f|%>
-      <%= link_to f.display_name, f %>
+      <%= link_to f.itemname, f %>
     <% end %>
   </strong></p>
   <p><strong>내가 단 댓글: <%= current_user.name %></strong></p>
   <p>
     <% @reviews.each do |r|%>
-      <%= r.body %>
+      <%= r.item.itemname%><br>
+      <%= r.body %><br><br>
     <% end %>
   </p>
   <p><strong>장바구니: 

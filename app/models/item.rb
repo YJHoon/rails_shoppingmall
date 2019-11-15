@@ -7,12 +7,13 @@ class Item < ApplicationRecord
   mount_uploader :image, ImageUploader
 
   validates :display_name, presence: true#, uniqueness: true
+  validates :itemname, presence: true
 
   def image_url
     image.url.present? ? image.url : "/simple.png"
   end
 
   def rating_avg
-    (reviews.sum(:rating) / reviews_count.to_f) rescue 0
+    reviews.sum(:rating) / reviews_count rescue 0
   end
 end

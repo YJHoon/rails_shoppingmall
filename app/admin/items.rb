@@ -7,15 +7,15 @@ ActiveAdmin.register Item do
   #
   permit_params :user_id, :display_name, :item_explain, :price, :image, :itemname, :quantity, :reviews_count
 
-  member_action :publish, method: :put do
-    item = Item.find(params[:id])
-    item.update(published_at: Time.zone.now)
-    redirect_to admin_item_path(item)
-  end
+  # member_action :publish, method: :put do
+  #   item = Item.find(params[:id])
+  #   item.update(published_at: Time.zone.now)
+  #   redirect_to admin_item_path(item)
+  # end
 
-  action_item :publish, only: :show do
-    link_to "publish", publish_admin_post_path(post), method: :put unless item.published_at?
-  end
+  # action_item :publish, only: :show do
+  #   link_to "publish", publish_admin_item_path(item), method: :put unless item.published_at?
+  # end
   #
   # or
   #
