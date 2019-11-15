@@ -7,7 +7,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @new_review = Review.new
     @reviews = @item.reviews.order(created_at: :desc)
   end
 

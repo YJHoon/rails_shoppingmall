@@ -2,8 +2,12 @@ class ReviewsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item
 
+  def new
+    @review = Review.new
+  end
+
   def create
-    current_user.reviews.create!(
+    review = current_user.reviews.create!(
       item: @item,
       body: review_params[:body],
       rating: review_params[:rating]

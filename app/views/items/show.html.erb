@@ -61,7 +61,7 @@
       <div class="carousel-item active">
         <h1> 상품설명, 리뷰 이런거 할것</h1>
         <div class="carousel-caption d-none d-md-block">
-          <h5>First slide label</h5>
+          <h5>First </h5>
           <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
         </div>
       </div>
@@ -93,16 +93,7 @@
 
 <div class="review_content">
   <h4>리뷰 작성</h4>
-  <div class="write-review">
-    <%= form_for(@new_review, url: item_reviews_path(@item)) do |f| %>
-      <%= f.label '댓글' %>
-      <%= f.text_area :body, class: 'form-control', required: true %><br>
-
-      <%= f.label '평점' %>
-      <%= f.select :rating, [1, 2, 3, 4, 5], {}, class: 'form-control' %><br>
-
-      <%= f.submit('댓글작성', class: 'btn btn-outline-primary') %><br>
-    <% end %>
+  <%= link_to '리뷰 작성', new_item_review_path(@item) %>
   </div>
 
   <div class="show-review">
