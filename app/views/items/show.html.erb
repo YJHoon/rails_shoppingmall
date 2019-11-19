@@ -1,54 +1,64 @@
 <div class="item-show">
-  <p>
-    <strong>사진:</strong>
-    <%= image_tag(@item.image_url, style:"width:200px;") %>
+  <div class="show-image">
+    <p>
+      <strong>사진:</strong>
+      <%= image_tag(@item.image_url, style:"width:200px;") %>
+    </p>
+  </div>
+  
+  <p class="star_rating">
+    <a href="#" class="on">★</a>
+    <a href="#" class="on">★</a>
+    <a href="#" class="on">★</a>
+    <a href="#">★</a>
+    <a href="#">★</a>
   </p>
+  <div class="show-content">
+    <p>
+      <strong>상품 이름:</strong>
+      <%= @item.itemname %>
+    </p>
 
-  <p>
-    <strong>상품 이름:</strong>
-    <%= @item.itemname %>
-  </p>
+    <p>
+      <strong>상품 설명:</strong>
+      <%= @item.item_explain %>
+    </p>
 
-  <p>
-    <strong>상품 설명:</strong>
-    <%= @item.item_explain %>
-  </p>
+    <p>
+      <strong>가격:</strong>
+      <%= number_to_currency(@item.price, unit: '₩') %>
+    </p>
 
-  <p>
-    <strong>가격:</strong>
-    <%= number_to_currency(@item.price, unit: '₩') %>
-  </p>
+    <p>
+      <strong>수량:</strong>
+      <%= @item.quantity %>
+    </p>
 
-  <p>
-    <strong>수량:</strong>
-    <%= @item.quantity %>
-  </p>
+    <p>
+      <strong>리뷰 개수:</strong>
+      <%= @item.reviews_count %>
+    </p>
 
-  <p>
-    <strong>리뷰 개수:</strong>
-    <%= @item.reviews_count %>
-  </p>
+    <p>
+      <strong>리뷰 평균평점:</strong>
+      <%= @item.rating_avg %>
+    </p>
 
-  <p>
-    <strong>리뷰 평균평점:</strong>
-    <%= @item.rating_avg %>
-  </p>
-
-  <%# 시간 관계상 여기다 만듦 %>
-  <p>
-    <strong>찜한 수:</strong>
-    <%= @item.wishes.size %><br>
-    <% if current_user.is_wish?(@item) %>
-      <%= link_to "찜하기 취소", item_wish_path(@item), method: "post" %>
-    <% else %>
-      <%= link_to "찜하기", item_wish_path(@item), method: "post" %>
-    <% end%>
-  </p>
-
-  <%= link_to 'Edit', edit_item_path(@item) %> |
-  <%= link_to 'Destroy', @item, method: :delete, data: { confirm: 'Are you sure?' } %> |
-  <%= link_to 'Back', items_path %>
+    <p>
+      <strong>찜한 수:</strong>
+      <%= @item.wishes.size %><br>
+      <% if current_user.is_wish?(@item) %>
+        <%= link_to "찜하기 취소", item_wish_path(@item), method: "post" %>
+      <% else %>
+        <%= link_to "찜하기", item_wish_path(@item), method: "post" %>
+      <% end%>
+    </p>
+    <%= link_to 'Edit', edit_item_path(@item) %> |
+    <%= link_to 'Destroy', @item, method: :delete, data: { confirm: 'Are you sure?' } %> |
+    <%= link_to 'Back', items_path %>
+  </div>
 </div>
+
 
 <div class="bd-example">
   <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
@@ -120,3 +130,11 @@
       </table>
   </div>
 </div>
+<style>
+$( ".star_rating a" ).click(function() {
+     $(this).parent().children("a").removeClass("on");
+     $(this).addClass("on").prevAll("a").addClass("on");
+     return false;
+});
+
+</style>

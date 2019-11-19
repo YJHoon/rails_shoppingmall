@@ -3,12 +3,21 @@
   <h4>리뷰 작성</h4>
   <div class="write-review">
     <%= form_for(@review, url: item_reviews_path(@item)) do |f| %>
+      <p id="star_grade">
+        <a href="#">★</a>
+        <a href="#">★</a>
+        <a href="#">★</a>
+        <a href="#">★</a>
+        <a href="#">★</a>
+      </p>
+
       <%= f.label '댓글' %>
       <%= f.text_area :body, class: 'form-control', required: true %><br>
 
       <%= f.label '평점' %>
       <%= f.select :rating, [1, 2, 3, 4, 5], {}, class: 'form-control' %><br>
-
+  
+      rating  : <%= rating_for @review, 'rating' %>
       <%= f.submit('댓글작성', class: 'btn btn-outline-primary') %><br>
     <% end %>
   </div>

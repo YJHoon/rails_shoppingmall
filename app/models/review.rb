@@ -1,4 +1,5 @@
 class Review < ApplicationRecord
+  ratyrate_rateable "rating"
   belongs_to :user
   belongs_to :item, counter_cache: true
 

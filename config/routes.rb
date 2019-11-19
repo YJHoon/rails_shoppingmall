@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
+  post '/rate' => 'rater#create', :as => 'rate'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
   devise_for :users
   get '/mypage' => 'users#mypage'
-
+  get '/mywish' => 'users#mywish'
   root "items#index"
   resources :posts
   resources :items do

@@ -9,12 +9,9 @@
   <p><strong>내가 단 댓글: <%= current_user.name %></strong></p>
   <p>
     <% @reviews.each do |r|%>
-      <%= r.item.itemname%><br>
-      <%= r.body %><br><br>
+      상품 : <%= r.item.display_name%><br>
+      리뷰 내용 : <%= r.body %><br><br>
     <% end %>
   </p>
-  <p><strong>장바구니: 
-    <% @wishes.each do |w|%>
-      <%= link_to w.display_name, w %>
-    <% end %></strong></p>
+  
 </div>
