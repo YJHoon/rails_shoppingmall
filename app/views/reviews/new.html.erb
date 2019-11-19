@@ -1,24 +1,61 @@
-
 <div class="review_content">
   <h4>리뷰 작성</h4>
   <div class="write-review">
     <%= form_for(@review, url: item_reviews_path(@item)) do |f| %>
-      <p id="star_grade">
-        <a href="#">★</a>
-        <a href="#">★</a>
-        <a href="#">★</a>
-        <a href="#">★</a>
-        <a href="#">★</a>
-      </p>
 
       <%= f.label '댓글' %>
       <%= f.text_area :body, class: 'form-control', required: true %><br>
 
       <%= f.label '평점' %>
-      <%= f.select :rating, [1, 2, 3, 4, 5], {}, class: 'form-control' %><br>
-  
-      rating  : <%= rating_for @review, 'rating' %>
+      <%#= f.select :rating, [1, 2, 3, 4, 5], {}, class: 'form-control' %><br>
+
+      <div id="rating_stars">
+        <%= f.label :rating, class: 'rating_label', id: 'rating_star_1', data: {num: 1} do %>
+          <span class="fa fa-star checked"></span>
+        <% end %>
+        <%= f.radio_button :rating, 1, :checked => true, class: 'rating_radio' %>
+
+        <%= f.label :rating, class: 'rating_label', id: 'rating_star_2', data: {num: 2} do %>
+          <span class="fa fa-star"></span>
+        <% end %>
+        <%= f.radio_button :rating, 2, class: 'rating_radio' %>
+
+        <%= f.label :rating, class: 'rating_label', id: 'rating_star_3', data: {num: 3} do %>
+          <span class="fa fa-star"></span>
+        <% end %>
+        <%= f.radio_button :rating, 3, class: 'rating_radio' %>
+
+        <%= f.label :rating, class: 'rating_label', id: 'rating_star_4', data: {num: 4} do %>
+          <span class="fa fa-star"></span>
+        <% end %>
+        <%= f.radio_button :rating, 4, class: 'rating_radio' %>
+
+        <%= f.label :rating, class: 'rating_label', id: 'rating_star_5', data: {num: 5} do %>
+          <span class="fa fa-star"></span>
+        <% end %>
+        <%= f.radio_button :rating, 5, class: 'rating_radio' %>
+      </div>
+
+      <br>
+
       <%= f.submit('댓글작성', class: 'btn btn-outline-primary') %><br>
     <% end %>
   </div>
 </div>
+
+<script type="text/javascript">
+  $('.rating_label').on('click', function(){
+    const ratingStarNum = $(this).data("num");
+    console.log(ratingStarNum);
+    $(`#review_rating_${ratingStarNum}`).trigger('click');
+
+    for (let i = 1; i < 6; i++) {
+      const ratingStar = $(`#review_rating_${i}`);
+      if (ratingStarNum >= ratingStar.val()) {
+        $(`#rating_star_${i}`).addClass('checked');
+      } else {
+        $(`#rating_star_${i}`).removeClass('checked');
+      }
+    }
+  });
+</script>
