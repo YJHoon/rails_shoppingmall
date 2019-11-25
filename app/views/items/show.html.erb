@@ -52,7 +52,7 @@
       <div class="write-review">
         <%= form_for(@cart, url: item_cart_path(@item)) do |f| %>
           <%= f.hidden_field :cart_item_name, value: @item.itemname %>
-          
+
           <%= f.label '수량' %><br>
           <%= f.number_field :cart_item_quantity, min: 1 %>
           <br>
@@ -105,18 +105,3 @@
         <% end %>
       </table>
   </div>
-</div>
-
-
-<script type="text/javascript">
-  $('.stars').on(function() {
-    const ratingStars = $(`review_rating`);
-    for (let i = 0; i < 5 ; i++) {
-      if
-      $('#rating_star_${i}').addClass('checked');
-    } else {
-      $(`#rating_star_${i}`).removeClass('checked');
-    }
-  });
-
-</script>

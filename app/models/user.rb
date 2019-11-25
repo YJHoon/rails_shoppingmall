@@ -24,6 +24,7 @@ class User < ApplicationRecord
   end
 
   def say_hello
+    puts "email : #{email}"
     puts 'hello hi'
   end
 
@@ -34,4 +35,10 @@ class User < ApplicationRecord
   def self.say_hello
     puts 'hello world'
   end
+
+  # def items
+  #   items = Item.where(user_id: self.id)
+  #   items.destroy_all if self.destroy?
+  #   items
+  # end
 end
