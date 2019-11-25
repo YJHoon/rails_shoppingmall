@@ -12,9 +12,6 @@ class WishesController < ApplicationController
       wish.destroy
     end
 
-    # rails 5부터는 redirect_back 대신 redirect_back을 이용한다고 함.
-    # redirect_to :back
-    # 근데 root_path인데 왜 뒤로 가는건지 모르겠음
     redirect_back(fallback_location: root_path)
   end
 

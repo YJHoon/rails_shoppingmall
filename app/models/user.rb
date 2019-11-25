@@ -15,7 +15,9 @@ class User < ApplicationRecord
   # wishes - 유저가 가진 wishes 기록 사라짐
   # wished_items - 유저가 찜했던 아이템 기록 사라짐 ??? -> 둘이 의미하는게 정확히 뭐가 다른거지?
 
-  #     User --- Wish --- Item
+  #장바구니
+  has_many :carts, dependent: :destroy
+  has_many :items_cart, through: :carts, source: :item
 
   def is_wish?(item)
     Wish.find_by(user_id: self.id, item_id: item.id).present?

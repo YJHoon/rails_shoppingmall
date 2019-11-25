@@ -8,6 +8,8 @@ class ItemsController < ApplicationController
 
   def show
     @reviews = @item.reviews.order(created_at: :desc)
+    @carts = @item.carts.order(created_at: :desc)
+    @cart = Cart.new
   end
 
   def new

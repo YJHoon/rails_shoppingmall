@@ -15,6 +15,10 @@
  *= require_self
  *= stub active_admin
  */
+.container{
+  margin-bottom: 100px;
+  text-align : center;
+}
 
 .rating_radio {
   display: none;
@@ -22,4 +26,12 @@
 
 .checked {
   color: orange;
+}
+
+#navbarSupportedContent {
+  padding:0px; 
+  margin:0px; 
+  position:absolute; 
+  right:5%; 
+  top:0px;
 }

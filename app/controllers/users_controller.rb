@@ -10,4 +10,8 @@ class UsersController < ApplicationController
   def mywish
     @wishes = current_user.wished_items
   end
+
+  def mycart
+    @carts = current_user.items_cart
+  end
 end

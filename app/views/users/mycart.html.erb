@@ -1,0 +1,9 @@
+<h1>내 장바구니</h1>
+<p>
+  <strong>장바구니: 
+    <% @carts.each do |c|%>
+      <%= link_to c.display_name, c %>
+      <%= c.quantity %>
+    <% end %>
+  </strong>
+</p>
