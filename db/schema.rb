@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_24_063807) do
+ActiveRecord::Schema.define(version: 2019_11_26_043703) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -82,6 +82,36 @@ ActiveRecord::Schema.define(version: 2019_11_24_063807) do
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_likes_on_post_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "line_items", force: :cascade do |t|
+    t.integer "order_id"
+    t.integer "item_id"
+    t.integer "quantity", default: 1
+    t.integer "unit_price", default: 0
+    t.integer "total", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_line_items_on_item_id"
+    t.index ["order_id"], name: "index_line_items_on_order_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "state"
+    t.string "order_number"
+    t.integer "total", default: 0
+    t.string "orderer"
+    t.string "phone"
+    t.string "zipcode"
+    t.string "address1"
+    t.string "address2"
+    t.string "shipping_msg"
+    t.datetime "paid_at"
+    t.datetime "cancelled_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "overall_averages", force: :cascade do |t|

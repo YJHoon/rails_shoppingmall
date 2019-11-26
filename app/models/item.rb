@@ -5,6 +5,7 @@ class Item < ApplicationRecord
   has_many :wished_users, through: :wishes, source: :user
   has_many :carts, dependent: :destroy
   has_many :users_cart, through: :carts, source: :user
+  has_many :line_items, dependent: :destroy
   # 여기서 source는 wish 모델의 belongs_to :user 관계를 기반으로 찾아옴
   mount_uploader :image, ImageUploader
 
